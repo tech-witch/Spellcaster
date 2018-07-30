@@ -13,7 +13,6 @@ function initialize(){
   selectableInit();
   showMoon();
   initMap();
-  anyangInit();
 }
 
 
@@ -229,22 +228,6 @@ function selectableInit(){
   }
 
 
-function anyangInit(){
-  if (annyang) {
-    // Let's define our first command. First the text we expect, and then the function it should call
-    var commands = {
-      'show tps report': function() {
-        $('#tpsreport').animate({bottom: '-100px'});
-      }
-    };
-
-    // Add our commands to annyang
-    annyang.addCommands(commands);
-
-    // Start listening. You can call this here, or attach this call to an event, button, etc.
-    annyang.start();
-  }
-}
 
 //Close the welcome pop-up
 function newSpell(){
@@ -416,7 +399,7 @@ function play(){
   wordInit();
   initialize();
   console.log(wordObjects.length);
-  responsiveVoice.speak(text,"UK English Female", {rate: 0.7});
+  //responsiveVoice.speak(text,"UK English Female", {rate: 0.7});
 
 
   setParams();
