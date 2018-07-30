@@ -3,8 +3,7 @@
 * Some notes on the prototype:
 - Back button does not work well. Refresh page instead.
 - The drag and drop sometimes lag. Refresh to fix. Same for any other bugs or lags. 
-- The project aims to contain many more "items" to put in spells: real time weather data, planet allignment, sounds, social media integration (twitter, facebook, instagram), etc.
-*
+- The project aims to contain many more "items" to put in spells: real time weather data, planet allignment, sounds, social media integration (twitter, facebook, instagram), etc.*
 
 ## Artist Statement
 
