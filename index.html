@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="style.css">
+      <script src="script.js"></script>
+      <script src="textHandler.js"></script>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.6/addons/p5.dom.js"></script>
+      <script src="sketch.js"></script>
+      <script src="spellScript.js"></script>
+      <script src="particleSystem.js"></script>
+      <script src="moon.js"></script>
+
+      <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+
+      <script src="jscolor.js"></script>
+
+
+    </head>
+
+    <body>
+      <div id="overlay" onclick="newSpell()">
+
+      </div>
+    <div id="container">
+      <div class="popup"id="popup" >
+        Welcome to TECH_WITCH's Digital SpellCaster!<br><br>
+        Ditch the candles and the sage. This caster allows you to use digital materials for your spells.<br><br>
+        Hex you ex's twitter account & cleanse your mp3s of sad feelings. Cast safely!  <br><br>
+
+      <!--  <h1 class="ui-popup-button" id="newSpellButton" onclick="newSpell()">New Spell</h1>
+
+        <h1  class="ui-popup-button" id="premadeSpellButton" onclick="premadeSpell()">Premade Spell</h1> -->
+       <p id="exitButton" class="xButton" onclick="newSpell()" >X</p>
+      </div>
+      <div id="header1" class="layout">
+        <a href="http://www.techwitches.com"  target="_blank">TECH_WITCHES</a>
+      </div>
+      <div id="header2" class="layout">
+        <p id="moonPhase">Moon Phase</p>
+        <img id="moon" src="moon/0.svg">
+        <div id="blockchain">
+          <p id="headerInstruction">yo</p>
+          </div>
+      </div>
+
+      <div id="textAreaContainer">
+        <textarea id="myTextarea" rows="20" onfocus="this.placeholder = ''"></textarea>
+        <h1 id="rando" class="ui-button" onclick="randomizeSpell()">randomize</h1>
+      </div>
+
+      <p id="display"></p>
+      <div id="spellBox">
+        <div id="intentionBoxContainer">
+          <div id="intentionBox">
+            Set intentions for your spell by editing individual words. <br><br>
+
+          </div>
+        </div>
+        <ol id="box1" class="spellBoxes">
+          <p id="cauldronInstruction">
+            Your cauldron is currently empty.<br><br>
+
+            Start by adding the core element on which your spell will be based.<br><br>
+
+            Then add any other elements you like.
+
+          </p>
+        </ol>
+        <div id="box2" class="spellBoxes">
+          <div id="fileBox" class="AssistantWindow">
+            <h1>File</h1>
+            <input type="file" name="myFile" accept="file_extension|audio/*|video/*|image/*|media_type">
+          </div>
+          <div id="linkBox" class="AssistantWindow">
+            <h1>Link</h1>
+            <input type="url" name="url" id="url"
+               placeholder="https://example.com"
+               pattern="https://.*" required />
+            <button onclick="loadWebsite()" >Load</button>
+            <iframe id="browserWindow"></iframe>
+          </div>
+          <div id="hashtagBox" class="AssistantWindow">
+            <h1>Hashtag</h1>
+          </div>
+          <div id="profileBox" class="AssistantWindow">
+            <h1>Profile</h1>
+          </div>
+          <div id="planetBox" class="AssistantWindow">
+            <h1>Planet</h1>
+          </div>
+          <div id="infinityBox" class="AssistantWindow">
+            <h1>Numerical Value</h1>
+            <form action="">
+              <input type="radio" name="gender" value="num" checked> <input type="number" name="myNumber"><br>
+              <input type="radio" name="gender" value="inf"> Infinity<br>
+              <input type="radio" name="gender" value="pi"> Pi <br>
+              <input type="radio" name="gender" value="phi"> Phi (φ) <br>
+
+
+            </form>
+          </div>
+          <div id="emotionBox" class="AssistantWindow">
+            <h1>Emotion</h1>
+          </div>
+          <div id="colorBox" class="AssistantWindow">
+            <h1>Color</h1>
+            <br>
+            Color: <input class="jscolor" value="ab2567">
+          </div>
+          <div id="distanceBox" class="AssistantWindow">
+            <h1>Distance</h1>
+          </div>
+          <div id="placeBox" class="AssistantWindow">
+            <h1>Place</h1>
+            <div id="myMap"></div>
+          </div>
+          <div id="toneBox" class="AssistantWindow">
+            <h1>Sound</h1>
+          </div>
+          <div id="numberBox" class="AssistantWindow">
+            <h1>Number</h1>
+          </div>
+          <div id="emojiBox" class="AssistantWindow">
+            <h1>Emoji</h1>
+          </div>
+          <div id="timeBox" class="AssistantWindow">
+            <h1>Time and Date</h1>
+            <input type="date" name="myDate">
+            <input type="time" name="myTime">
+          </div>
+          <div id="weatherBox" class="AssistantWindow">
+            <h1>Weather</h1>
+          </div>
+          <div id="passwordBox" class="AssistantWindow">
+            <h1>Password</h1>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="leftBar">
+        <ol id="selectable">
+            <li class="spell  selected-spell" id="newSpell">New Spell</li>
+        <!--    <li class="spell" id="hexUrEx">Hex Your Ex</li>
+            <li class="spell" id="cleanseFile">Cleanse Files</li>
+            <li class="spell" id="luckSpell">Luck Spell</li> -->
+        </ol>
+
+      </div>
+      <div id="rightBar">
+        <div id="box2Container">
+          <li class="item" id="file">
+            <img src="spells/file.svg">
+            <div class="itemOverlay">
+              <p>File</p>
+            </div>
+          </li>
+        <li class="item" id="place">
+          <img src="spells/place.svg">
+          <div class="itemOverlay">
+            <p>Place</p>
+          </div>
+        </li>
+        <li class="item" id="link">
+          <img src="spells/website.svg">
+          <div class="itemOverlay">
+            <p>Link</p>
+          </div>
+        </li>
+          <li class="item" id="infinity">
+            <img src="spells/infinity.svg">
+            <div class="itemOverlay">
+              <p>Number</p>
+            </div>
+          </li>
+
+
+          <li class="item" id="time">
+              <img src="spells/date.svg">
+              <div class="itemOverlay">
+                <p>Date & Time</p>
+              </div>
+          </li>
+
+
+        <!--
+        <li class="item" id="planet">
+          <img src="spells/galaxy.svg">
+          <div class="itemOverlay">
+            <p>Planet</p>
+          </div>
+        </li>
+        <li class="item" id="emoji">Emoji
+          <div class="itemOverlay">
+            <p>Emoji</p>
+          </div>
+        </li>
+        <li class="item" id="profile">
+          <img src="spells/profile.svg">
+          <div class="itemOverlay">
+            <p>Profile</p>
+          </div>
+        </li>
+        <li class="item" id="hashtag">
+          <img src="spells/hashtag.svg">
+          <div class="itemOverlay">
+            <p>Hashtag</p>
+          </div>
+        </li>
+        <li class="item" id="emotion">
+          <img src="spells/emotion.svg">
+          <div class="itemOverlay">
+            <p>Emotion</p>
+          </div>
+        </li>
+
+        <li class="item" id="color">
+               <img src="spells/color.svg">
+               <div class="itemOverlay itemImplemented">
+                 <p>Color</p>
+               </div>
+             </li>
+          <li class="item" id="tone">
+            <img src="spells/sound.svg">
+            <div class="itemOverlay">
+              <p>Sound</p>
+            </div>
+          </li>
+          <li class="item" id="number">number
+            <div class="itemOverlay">
+              <p>Number</p>
+            </div>
+          </li>
+
+          <li class="item" id="distance">
+            <img src="spells/distance.svg">
+            <div class="itemOverlay">
+              <p>Distance</p>
+            </div>
+        </li>
+        <li class="item" id="password">
+            <img src="spells/password.svg">
+            <div class="itemOverlay">
+              <p>Password</p>
+            </div>
+        </li>
+
+          <li class="item" id="weather">
+              <img src="spells/weather.svg">
+              <div class="itemOverlay">
+                <p>Weather</p>
+              </div>
+          </li>
+          -->
+
+
+        </div>
+      </div>
+      <div id="footer" class="layout">
+     <h1 onclick="submitText()" id="ui-submit" class="ui-button">submit</h1>
+        <h1 onclick="submitIntentions()" id="ui-intentions" class="ui-button">submit</h1>
+        <h1 onclick="play()" class="ui-button" id="ui-play">cast spell</h1>
+        <h1 onclick="back()" class="ui-button" id="ui-back">back</h1>
+      </div>
+
+      </div>
+
+<!--
+      <div id="feelings">
+        <div class="modifier" id="sorrow"></div>
+        <div class="modifier" id="joy"></div>
+        <div class="modifier" id="anger"></div>
+      </div>
+-->
+      <div class="window"></div>
+
+    </body>
+    <style>
+     /* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+     #myMap {
+       height: 80%;
+       width: 100%;
+     }
+     /* Optional: Makes the sample page fill the window. */
+   </style>
+  </html>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+
+
+        initialize();
+
+
+
+
+
+      </script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAlz2lDNoMqpvM4aXr3QDrnSn1c0uQh44&callback=initMap"
+   async defer></script>

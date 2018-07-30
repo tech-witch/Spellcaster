@@ -1,0 +1,605 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body{
+  overflow:hidden;
+}
+
+
+:root {
+    --main-color: black;
+    --secondary-color: #ffd54f;
+    --main-bg-color:#fcfcfc;
+
+    --main-border-color: black;
+    --main-font-color: black;
+    --main-thickness: 1px;
+
+    --main-font:arial;
+}
+
+::selection { background: var(--secondary-color); }
+
+#container{
+  width:100%;
+  height:100vh;
+  background-color: white;
+}
+
+#overlay{
+  width: 100%;
+  height:100%;
+  opacity:0.4;
+  z-index: 99;
+  position: absolute;
+  top:0px;
+  left: 0px;
+}
+
+.popup{
+  position: absolute;
+  width:40vw;
+  left:30vw;
+  top:40vh;
+  border:solid var(--main-thickness) var(--main-border-color);
+  background-color: white;
+  z-index: 100;
+  padding:20px;
+  text-align: center;
+}
+
+.ui-popup-button{
+  display: inline-block;
+  padding:10px;
+  background-color: white;
+  border: solid var(--main-thickness) var(--main-border-color);
+  text-align: center;
+  margin-right: 20px;
+
+}
+
+.ui-popup-button:hover{
+  cursor: pointer;
+  background-color: white;
+  background-color: var(--secondary-color);
+  border: solid var(--main-thickness) var(--secondary-color);
+}
+
+
+.xButton{
+  position:absolute;
+  top:10px;
+  right:10px;
+  cursor: pointer;
+}
+
+
+#myCanvas{
+  z-index:-20000;
+}
+
+
+/*--------------  TEXT AREA && LAYOUT  ------------------*/
+
+textarea{
+  width:100%;
+  height: 80%;
+  font:var(--main-font);
+  padding:24px;
+  font-size: 20px;
+  resize: none;
+  border:none;
+  line-height: 30px;
+}
+
+textarea:focus{
+outline: none !important;
+}
+
+#textAreaContainer{
+  position: absolute;
+  top:calc(10vh - var(--main-thickness));
+  left:15vw;
+  width:calc(33vw - var(--main-thickness)*2);
+  height:80vh;
+  border:solid var(--main-thickness) var(--main-border-color);
+  border-right:none;
+  z-index:0;
+}
+
+#rando{
+  margin-left:45%;
+  margin-top: 20px;
+}
+
+#display{
+  position: absolute;
+  top:calc(10vh - var(--main-thickness));
+  width:calc(35vw - var(--main-thickness)*2);
+  height:78vh;
+  left:15vw;
+  /*left:calc(50vw + var(--main-thickness)*3);*/
+  font-size: 20px;
+  resize: none;
+  border:solid var(--main-thickness) var(--main-border-color);
+  background-color: white;
+  padding:20px;
+  font:var(--main-font);
+  font-size: 20px;
+  z-index:-1;
+  padding:24px;
+}
+
+#spellBox{
+  position: absolute;
+  top:calc(10vh - 1px);
+  width:calc(35vw - var(--main-thickness)*2);
+  height:80vh;
+  left:calc(50vw + var(--main-thickness)*3);
+  font-size: 20px;
+  resize: none;
+  border:solid var(--main-thickness) var(--main-border-color);
+  background-color: white;
+  font:var(--main-font);
+  font-size: 20px;
+  z-index:3;
+}
+
+#intentionBoxContainer{
+  width:100%;
+  height:100%;
+
+}
+#intentionBox{
+  position: absolute;
+  width:100%;
+  height:100%;
+  text-align: center;
+  display: none;
+  top:40%;
+}
+
+.ui-word-module{
+  position: absolute;
+  width:100%;
+  height:100%;
+  text-align: center;
+  background-color: red;
+
+}
+
+
+
+
+#popup2{
+  display: none;
+}
+
+#box1{
+  width:100%;
+  height:50%;
+  border-bottom:solid var(--main-thickness) var(--main-border-color);
+  overflow-y: scroll;
+  overflow-x:hidden;
+}
+
+.itemActive:hover{
+ cursor: pointer;
+}
+#box1 .ui-selecting {
+    border-top:solid var(--main-thickness) var(--main-border-color);
+    border-bottom:solid var(--main-thickness) var(--main-border-color);
+    background-color: var(--secondary-color);
+  }
+
+#box1 .ui-selected {
+    border-top:solid var(--main-thickness) var(--main-border-color);
+    border-bottom:solid var(--main-thickness) var(--main-border-color);
+    background-color: var(--secondary-color);
+  }
+
+#cauldronInstruction{
+  top:20%;
+  position: absolute;
+  width:100%;
+  text-align: center;
+  display: none;
+}
+
+#box2{
+  width:100%;
+  height:40vh;
+  border-bottom:solid var(--main-thickness) var(--main-border-color);
+
+}
+#box2Container{
+  height: 80vh;
+  overflow: scroll;
+  display: none;
+  font-size: 20px;
+  overflow-x:hidden;
+}
+#data{
+  display:none;
+}
+
+.spell{
+  position: relative;
+  margin:0px;
+  top:0px;
+  width:100%;
+  height: 50px;
+  display: inline-block;
+  border-bottom:solid var(--main-thickness) var(--main-border-color);
+  color: black;
+  text-align: center;
+  padding-top:20px;
+  border-top:solid var(--main-thickness) var(--main-border-color);
+  border-bottom:solid var(--main-thickness) var(--main-border-color);
+  cursor:pointer;
+}
+
+.selected-spell{
+    background-color: var(--secondary-color);
+}
+
+
+
+.item{
+  position: relative;
+  margin:0px;
+  top:0px;
+  width:100%;
+  height: 80px;
+  display: inline-block;
+  border-bottom:solid var(--main-thickness) var(--main-border-color);
+  color: black;
+  text-align: center;
+  padding-top: 5%;
+
+}
+
+.item img{
+  height:90%;
+  top:5%;
+
+}
+
+.itemOverlay{
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  text-transform: capitalize;
+  position: absolute;
+  top:0px;
+  font-size: 24px;
+  opacity: 0;
+}
+
+.itemImplemented{
+  background-color: green;
+}
+
+.itemOverlay p{
+  margin-top:30px;
+}
+
+.itemOverlay:hover{
+  opacity:0.8;
+}
+
+.item:hover{
+  cursor: move;
+}
+
+.itemActive{
+  position: relative;
+  margin:0px;
+  top:0px;
+  width:100%;
+  height: 80px;
+  display: inline-block;
+  border-bottom:solid var(--main-thickness) var(--main-border-color);
+  color: black;
+  text-align: center;
+  padding : 2%;
+}
+
+.itemActive img{
+  height:94%;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.core-item{
+height:120px;
+}
+
+.AssistantWindow{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  padding: 20px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  display:none;
+}
+
+.AssistantWindow h1{
+  margin-bottom: 30px;
+}
+
+/* Style for the link Assistant window*/
+#browserWindow {
+  width:100%;
+  height: 70%;;
+}
+
+#url{
+  width: 70%;
+  margin-bottom: 20px;
+  padding:10px;
+}
+
+.AssistantWindow button{
+  padding:10px;
+  background-color: white;
+  border: solid var(--main-thickness) var(--main-border-color);
+  text-align: center;
+}
+
+.AssistantWindow button:hover{
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+
+#leftBar{
+  position: absolute;
+  left:0px;
+  width:15vw;
+  height:80vh;
+  top:calc(10vh - var(--main-thickness));
+  border-left:solid var(--main-thickness) var(--main-border-color);
+}
+
+#selectable{
+  display: none;
+}
+
+
+
+#rightBar{
+  position: absolute;
+  left:calc(85vw - var(--main-thickness)*2);
+  width:15vw;
+  height:80vh;
+  top:calc(10vh - var(--main-thickness));
+  border:solid var(--main-thickness) var(--main-border-color);
+}
+
+.layout{
+  background-color: var(--main-bg-color);
+  border:solid var(--main-thickness) var(--main-border-color);
+}
+
+.layout a{
+  font-weight: bold;
+  display:inline-block;
+  margin:1.5vh;
+  color: black;
+  text-decoration: none;
+}
+
+.layout a:hover{
+  color:var(--secondary-color);
+}
+
+.layout p{
+  display:inline-block;
+    margin:1.5vh;
+}
+body{
+  background-color: var(--main-bg-color);
+}
+
+#header1{
+height:5vh;
+}
+#header2{
+position: absolute;
+width: calc(100vw - var(--main-thickness)*2);
+height: 5vh;
+top:calc(5vh - var(--main-thickness)*2);
+text-align: center;
+}
+#header2:hover{
+  cursor:default;
+}
+
+#moon{
+  position: relative;
+  height:60%;
+  top:20%;
+}
+
+#moonPhase{
+  display:none;
+}
+
+#blockchain{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: white;
+  z-index:-100;
+  top:0px;
+
+}
+
+#blockchain p{
+  font-weight: bold;
+}
+
+#footer{
+  position: absolute;
+  height: calc(10vh - var(--main-thickness)*2);
+  top:90vh;
+  width: calc(100vw - var(--main-thickness)*2);
+  text-align: center;
+  z-index:10;
+}
+
+
+#ui-intentions{
+  display: none;
+}
+
+#ui-play{
+  top:20px;
+  left:47vw;
+  display:none;
+}
+
+#ui-back{
+  top:20px;
+  left:47vw;
+}
+
+#ui-submit{
+  top:20px;
+  left:47vw;
+}
+
+.ui-button{
+  position: absolute;
+  width: 5vw;
+  padding:10px;
+  background-color: white;
+  border: solid var(--main-thickness) var(--main-border-color);
+  text-align: center;
+  display: none;
+}
+
+
+
+.ui-button:hover{
+  cursor: pointer;
+  background-color: white;
+  background-color: var(--secondary-color);
+  border: solid var(--main-thickness) var(--secondary-color);
+}
+
+/*--------------  EMOTION MODS  ------------------*/
+
+/* feeling bank*/
+#feelings{
+  position:absolute;
+  border: solid var(--main-thickness) var(--main-border-color);
+  padding:0px 20px;
+  right:10px;
+  top:50px;
+}
+
+/*individual feeling mods*/
+.modifier{
+  width:20px;
+  height:20px;
+  cursor:pointer;
+  margin-bottom:20px;
+  margin-top:20px;
+  background-color:red;
+}
+
+#sorrow{
+    background-color:blue;
+}
+
+#joy{
+    background-color:yellow;
+}
+
+#anger{
+    background-color:red;
+}
+
+
+/*--------------  WORDS  ------------------*/
+span:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* word states */
+.ui-state-highlight-sorrow{
+  color:blue;
+}
+.ui-state-highlight-joy{
+  color:yellow;
+}
+.ui-state-highlight-anger{
+  color:red;
+}
+
+.ui-droppable-hover{
+  font-weight: bold;
+  color:black;
+}
+
+/*--------------  MODULES  ------------------*/
+.window{
+  padding:20px;
+  background-color: white;
+  z-index:20;
+  text-align: left;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.window h1{
+  text-align: center;
+  font-size: 20px;
+}
+
+/*.ui-word-module{
+  position: absolute;
+  top:600px;
+  border:solid 1px black;
+  text-align: center;
+  padding:40px 20px;
+}*/
+
+.ui-word-module h1{
+  color:black;
+  margin-bottom:30px;
+  font-size: 20px;
+}
+
+.ui-word-module input{
+  margin-bottom: 10px;
+}
+
+.ui-word-module #closeButton
+{
+  position: absolute;
+  top:10px;
+  right:10px;
+  cursor: pointer;
+}

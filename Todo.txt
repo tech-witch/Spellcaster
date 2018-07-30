@@ -1,0 +1,54 @@
+ ---- TO DO ----
+
+
+ UI
+ - Fix window position for sliders
+ - Fix selectable clicking on random spots lag
+ - Implement flashing item if not completed
+
+ - Add clear button to resubmit
+
+ FUNCTIONS
+
+
+
+///////////// WITCH NOTES
+
+hex----------
+
+- best time to cast is at nighttime when theyre sleeping (digi equivalent?)
+- make a voodoo doll (digi equi?)
+- personal object of the person/thing?
+- personal element of yourself....
+- graveyard dirt?
+- put intention into the elements youre working with
+- sealing it with black wax
+
+- equivalent of rot, dirt, etc. Shitty twitter hashtags?
+
+
+moon----------
+
+- planetary allignment
+
+items-----------
+
+- how to make items "true"? in terms of digital reality? not just conceptually true...
+
+
+
+raw materials-------
+- files: mp3, doc
+- data
+- geo location (gmaps)
+- instagram
+- email
+
+
+
+///////// VISUALS
+- go fetch related data: words on page, caption
+
+
+//// result
+- glitched image?
